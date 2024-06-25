@@ -13,7 +13,7 @@ public class Application {
     static ArrayList<String> listAcc = new ArrayList<String>();
     static Scanner input = new Scanner(System.in);
     final static File myFile = new File("C:\\Users\\Admin\\Documents\\GitHub\\Java_Projects\\Account.txt");
-
+    // you can change your path of file.
     // check username already exits ?
     static int checkAcc(String userName) {
         for (int i = 0; i < listAcc.size(); i += 2) {
