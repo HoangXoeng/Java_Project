@@ -1,2 +1,2 @@
 # Java_Project
- My funny froject 
+ Hello, I'm xoeng. NowI try to commit my project to github. So funny lol :DDDD
