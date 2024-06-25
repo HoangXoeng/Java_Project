@@ -5,9 +5,9 @@ public class Subject {
 	private String subject_name;
 	private int number_of_lesson;
 	public Subject() {}
-	public Subject(String name_of_subject,int lesson) {
+	public Subject(String name_of_subject,int number_of_lesson) {
 		this.subject_name = name_of_subject;
-		this.number_of_lesson = lesson;
+		this.number_of_lesson = number_of_lesson;
 		listSubject.add(this);
 		subject_ID = subject_ID + 1;
 	}
