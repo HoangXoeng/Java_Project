@@ -73,12 +73,12 @@ public class Application {
         while (checkAcc(userName, role) == -1) {
             count++;
             if (count == 3) {
-                System.out.println("Enter incorrectly 3 times, automatically switch to the sign up case");
+                System.out.println("Enter wrong 3 times, switch to sing up case");
                 System.out.println("Press enter to continue");
                 signUp(role);
                 break;
             }
-            System.out.println("Account does not exist! Re-enter!");
+            System.out.println("Account does not exist! Try again");
             System.out.print("User name: ");
             userName = input.nextLine();
         }
@@ -91,7 +91,7 @@ public class Application {
         while (password.equals(listAcc.get(indexPassword)) == false) {
             count++;
             if (count == 3) {
-                System.out.println("Enter incorrectly 3 times, automatically switch to the sign up item");
+                System.out.println("Enter wrong 3 times, switch to sing up case");
                 System.out.println("Enter to continue");
                 signUp(role);
                 break;
@@ -128,7 +128,7 @@ public class Application {
             System.out.print("\nUser name: ");
             String userName = input.nextLine();
             while (checkAcc(userName, role) != -1) { // check user name already exits ???
-                System.out.println("This name account has already existed! Re-enter!");
+                System.out.println("This account name has already existed! Try again");
                 System.out.print("User name: ");
                 userName = input.nextLine();
             }
@@ -166,7 +166,8 @@ public class Application {
                 case 4:
                     input.nextLine();
                     System.out.print("Enter new gender (1 letter): ");
-                    char gender = input.nextLine().charAt(0); // if user enter mone than 1 letter, App will recive firs letter
+                    char gender = input.nextLine().charAt(0); // if user enter mone than 1 letter, App will recive firs
+                                                              // letter
                     student.setAge(gender);
                     break;
                 case 5:
@@ -202,7 +203,8 @@ public class Application {
             System.out.println("Chose funtion");
             System.out.println("1: Modifi infomation");
             System.out.println("2: View list of subject in PNV");
-            System.out.println("3: Exit");
+            System.out.println("3: Check score");
+            System.out.println("4: Exit");
             chose = input.nextInt();
             switch (chose) {
                 case 1:
@@ -220,16 +222,21 @@ public class Application {
                 case 2:
                     Subject.showSubjectList();
                     break;
+                case 3:
+                    StudyPerform.showScore(PNV_Student.getList_Student().get(id));
+                    break;
                 default:
                     break;
             }
-        } while (chose != 3);
+        } while (chose != 4);
 
     }
 
     public static void main(String[] args) {
-        runData();// run data for program, you can understand this funtion will create object for this program
+        runData();// run data for program, you can understand this funtion will create object for
+                  // this program
         PNV_Student pnv_Student = new PNV_Student();
+        PNV_Teacher pnv_Teacher = new PNV_Teacher();
         System.out.println("Welcome");
         System.out.println("Choose your role");
         System.out.println("1. Student \n2. Staff \n3. Exit");
@@ -260,17 +267,37 @@ public class Application {
         Address ad3 = new Address("To Hien Thanh", 13);
         Address ad4 = new Address("To Hien Thanh", 13);
         Address ad5 = new Address("To Hien Thanh", 13);
+
         PNV_Student st1 = new PNV_Student("Ky Ba", "012312412", 18, 'f', ad0, "PNV26A");
         PNV_Student st2 = new PNV_Student("Thanh Binh", "012312412", 18, 'f', ad1, "PNV26A");
         PNV_Student st3 = new PNV_Student("Minh Hoang", "012312412", 18, 'f', ad2, "PNV26A");
         PNV_Student st4 = new PNV_Student("Thai Duong", "012312412", 18, 'f', ad3, "PNV26B");
         PNV_Student st5 = new PNV_Student("Xuan Nguyen", "012312412", 18, 'f', ad4, "PNV26B");
         PNV_Student st6 = new PNV_Student("Duyen Ha", "012312412", 18, 'f', ad5, "PNV26B");
-        Subject sb1 = new Subject("Python", 90);
-        Subject sb2 = new Subject("Java OOP", 90);
-        Subject sb3 = new Subject("GE1", 120);
-        Subject sb4 = new Subject("GE2", 120);
-        Subject sb5 = new Subject("PLT1", 90);
-        Subject sb6 = new Subject("PLT2", 45);
+
+        PNV_Teacher tc1 = new PNV_Teacher("Le Thi Hong Thuy", "012312412", 20, 'f', ad0, 19000000);
+        PNV_Teacher tc2 = new PNV_Teacher("Le Nguyen Phuc Nhan", "012312412", 20, 'f', ad0, 20000000);
+        PNV_Teacher tc3 = new PNV_Teacher("Ho Thi Ngoc Nhai", "012312412", 20, 'f', ad0, 18500000);
+
+        Subject sb1 = new Subject("Python", 90, tc1);
+        Subject sb2 = new Subject("Java OOP", 90, tc1);
+        Subject sb3 = new Subject("GE1", 120, tc2);
+        Subject sb4 = new Subject("GE2", 120, tc2);
+        Subject sb5 = new Subject("PLT1", 90, tc3);
+        Subject sb6 = new Subject("PLT2", 45, tc3);
+
+        
+        StudyPerform stpm1 = new StudyPerform(st1, sb1, 8);
+        StudyPerform stpm2 = new StudyPerform(st2, sb1, 8);
+        StudyPerform stpm3 = new StudyPerform(st3, sb1, 8);
+        StudyPerform stpm4 = new StudyPerform(st4, sb1, 8);
+        StudyPerform stpm5 = new StudyPerform(st5, sb1, 8);
+        StudyPerform stpm6 = new StudyPerform(st6, sb1, 8);
+        StudyPerform stpm7 = new StudyPerform(st1, sb4, 8);
+        StudyPerform stpm8 = new StudyPerform(st2, sb4, 8);
+        StudyPerform stpm9 = new StudyPerform(st3, sb4, 8);
+        StudyPerform stpm10 = new StudyPerform(st4, sb4, 8);
+        StudyPerform stpm11 = new StudyPerform(st5, sb4, 8);
+        StudyPerform stpm12 = new StudyPerform(st6, sb4, 8);
     }
 }

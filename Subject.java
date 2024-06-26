@@ -4,10 +4,12 @@ public class Subject {
 	private static ArrayList<Subject> listSubject = new ArrayList<Subject>();
 	private String subject_name;
 	private int number_of_lesson;
+	private PNV_Teacher teacher;
 	public Subject() {}
-	public Subject(String name_of_subject,int number_of_lesson) {
+	public Subject(String name_of_subject,int number_of_lesson, PNV_Teacher teacher) {
 		this.subject_name = name_of_subject;
 		this.number_of_lesson = number_of_lesson;
+		this.teacher = teacher;
 		listSubject.add(this);
 		subject_ID = subject_ID + 1;
 	}
@@ -37,10 +39,17 @@ public class Subject {
 	public double getNumber_of_lesson() {
 		return number_of_lesson;
 	}
+	
+	public PNV_Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(PNV_Teacher teacher) {
+		this.teacher = teacher;
+	}
 	public static void showSubjectList() {
         System.out.println("_______________SUBJECT LIST______________");
-        for(int i = 1; i < subject_ID; i++ ) {
-            System.out.printf(i+1 +". %-20s %.0f lesson \n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson());
+        for(int i = 0; i < subject_ID; i++ ) {
+            System.out.printf(i+1 +". %-20s %.0f lesson %20s\n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson(),listSubject.get(i).getTeacher().getName());
         }
     }
 	

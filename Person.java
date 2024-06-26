@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     protected String name;
     protected String phoneNumber;
     protected int age;
@@ -35,6 +35,7 @@ public class Person {
         return age;
     }
 
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -61,7 +62,6 @@ public class Person {
                 + ", address=" + address + "]";
     }
 
-    
 
     
 }
