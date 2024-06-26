@@ -39,8 +39,8 @@ public class Subject {
 	}
 	public static void showSubjectList() {
         System.out.println("_______________SUBJECT LIST______________");
-        for(int i = 0; i < subject_ID; i++ ) {
-            System.out.printf(i+1 +". %-20s %.3f d \n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson());
+        for(int i = 1; i < subject_ID; i++ ) {
+            System.out.printf(i+1 +". %-20s %.0f lesson \n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson());
         }
     }
 	

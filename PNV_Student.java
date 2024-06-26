@@ -4,7 +4,7 @@ public class PNV_Student extends Person{
 	private static ArrayList<PNV_Student> list_Student = new ArrayList<PNV_Student>();
 	private static int student_ID  = 0;
 	private String class_Student;
-	public PNV_Student () {}
+	public PNV_Student () {}//This constructor only create base object (object use to call method)
 	public PNV_Student (String name,String phoneNumber,int age, char gender, Address address, String name_class) {
 		super(name,phoneNumber,age,gender,address );
 		this.class_Student = name_class;
@@ -24,7 +24,7 @@ public class PNV_Student extends Person{
 	public static ArrayList<PNV_Student> getList_Student() {
 		return list_Student;
 	}
-	public static void setList_Student(ArrayList<PNV_Student> list_Student) {
+	public void setList_Student(ArrayList<PNV_Student> list_Student) {
 		PNV_Student.list_Student = list_Student;
 	}
 	public static int getStudent_ID() {
@@ -40,10 +40,10 @@ public class PNV_Student extends Person{
         }	
 	public static void showStudentList() {
         System.out.println("_______________STUDENT LIST______________");
-        for(int i = 0; i < student_ID; i++ ) {
+        for(int i = 1; i < student_ID; i++ ) {
             System.out.println(i + "   " +list_Student.get(i).getName()+"   "+ list_Student.get(i).getClass_Student());
         }
     }
-
+	
 	
 }

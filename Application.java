@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -66,7 +67,7 @@ public class Application {
         int count = 0;
         if (input.hasNextLine())
             input.nextLine();
-        System.out.println("_______________LOG IN_______________");
+        System.out.println("------------LOG IN------------");
         System.out.print("\nUser name: ");
         String userName = input.nextLine();
         while (checkAcc(userName, role) == -1) {
@@ -119,7 +120,7 @@ public class Application {
         } else {
             myFile = myFileStaff;
         }
-        System.out.println("_______________SIGN UP_______________");
+        System.out.println("------------SIGN UP------------");
         try {
             FileWriter writer = new FileWriter(myFile, true); // access file and allow write new linne
             BufferedWriter filein = new BufferedWriter(writer);
@@ -139,24 +140,11 @@ public class Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static void modifiInformation(PNV_Student student) {
-        int chose;
+    public static void modifiInformation(PNV_Student student, int choseModifi) {
         do {
-
-            System.out.println("Choose your infor you want modifi: ");
-            System.out.println("1. Modifi name");
-            System.out.println("2. Modifi phone number");
-            System.out.println("3. Modifi age");
-            System.out.println("4. Modifi gender");
-            System.out.println("5. Modifi address");
-            System.out.println("6. Modifi class");
-            System.out.println("7. Exit");
-            chose = input.nextInt();
-            input.nextLine();
-            switch (chose) {
+            switch (choseModifi) {
                 case 1:
                     input.nextLine();
                     System.out.print("Enter new name: ");
@@ -178,8 +166,7 @@ public class Application {
                 case 4:
                     input.nextLine();
                     System.out.print("Enter new gender (1 letter): ");
-                    char gender = input.nextLine().charAt(0); // if user enter mone than 1 letter, App will recive first letter
-                                                              
+                    char gender = input.nextLine().charAt(0); // if user enter mone than 1 letter, App will recive firs letter
                     student.setAge(gender);
                     break;
                 case 5:
@@ -200,11 +187,49 @@ public class Application {
                     break;
             }
 
-        } while (chose != 6);
+        } while (choseModifi != 7);
+    }
+
+    public static void studentMenthod(PNV_Student student) {
+        int chose;
+        System.out.println("Welcome back");
+        System.out.println("List of student: ");
+        PNV_Student.showStudentList();
+        System.out.println("Chose your id student:");
+        int id = input.nextInt();
+        do {
+            System.out.println(PNV_Student.getList_Student().get(id).getName());
+            System.out.println("Chose funtion");
+            System.out.println("1: Modifi infomation");
+            System.out.println("2: View list of subject in PNV");
+            System.out.println("3: Exit");
+            chose = input.nextInt();
+            switch (chose) {
+                case 1:
+                    System.out.println("Choose your infor you want modifi: ");
+                    System.out.println("1. Modifi name");
+                    System.out.println("2. Modifi phone number");
+                    System.out.println("3. Modifi age");
+                    System.out.println("4. Modifi gender");
+                    System.out.println("5. Modifi address");
+                    System.out.println("6. Modifi class");
+                    System.out.println("7. Exit");
+                    int choseModifi = input.nextInt();
+                    modifiInformation(PNV_Student.getList_Student().get(id), choseModifi);
+                    break;
+                case 2:
+                    Subject.showSubjectList();
+                    break;
+                default:
+                    break;
+            }
+        } while (chose != 3);
+
     }
 
     public static void main(String[] args) {
-
+        runData();// run data for program, you can understand this funtion will create object for this program
+        PNV_Student pnv_Student = new PNV_Student();
         System.out.println("Welcome");
         System.out.println("Choose your role");
         System.out.println("1. Student \n2. Staff \n3. Exit");
@@ -213,7 +238,7 @@ public class Application {
             case 1: {
                 accessFile(1);// prepare list of account
                 logIn(1);
-                System.out.println("case 1 run");
+                studentMenthod(pnv_Student);
                 break;
             }
             case 2: {
@@ -228,4 +253,24 @@ public class Application {
 
     }
 
+    public static void runData() {
+        Address ad0 = new Address("To Hien Thanh", 13);
+        Address ad1 = new Address("Phan Boi Chau", 13);
+        Address ad2 = new Address("Ho Chi Minh", 13);
+        Address ad3 = new Address("To Hien Thanh", 13);
+        Address ad4 = new Address("To Hien Thanh", 13);
+        Address ad5 = new Address("To Hien Thanh", 13);
+        PNV_Student st1 = new PNV_Student("Ky Ba", "012312412", 18, 'f', ad0, "PNV26A");
+        PNV_Student st2 = new PNV_Student("Thanh Binh", "012312412", 18, 'f', ad1, "PNV26A");
+        PNV_Student st3 = new PNV_Student("Minh Hoang", "012312412", 18, 'f', ad2, "PNV26A");
+        PNV_Student st4 = new PNV_Student("Thai Duong", "012312412", 18, 'f', ad3, "PNV26B");
+        PNV_Student st5 = new PNV_Student("Xuan Nguyen", "012312412", 18, 'f', ad4, "PNV26B");
+        PNV_Student st6 = new PNV_Student("Duyen Ha", "012312412", 18, 'f', ad5, "PNV26B");
+        Subject sb1 = new Subject("Python", 90);
+        Subject sb2 = new Subject("Java OOP", 90);
+        Subject sb3 = new Subject("GE1", 120);
+        Subject sb4 = new Subject("GE2", 120);
+        Subject sb5 = new Subject("PLT1", 90);
+        Subject sb6 = new Subject("PLT2", 45);
+    }
 }
