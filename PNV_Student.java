@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class PNV_Student extends Person{
-	private static ArrayList<Subject> listSubject_of_Student = new ArrayList<Subject>();
 	private static ArrayList<PNV_Student> list_Student = new ArrayList<PNV_Student>();
 	private static int student_ID  = 0;
 	private String class_Student;
@@ -19,15 +18,9 @@ public class PNV_Student extends Person{
 		this.class_Student = class_Student;
 	}
 	public String view_Information(PNV_Student student) {
-		return ("Student name is "+student.getName()+"\nPhone number is "+student.getPhoneNumber()+" \nStudy in class "+student.getClass_Student());
+		return ("Student name is "+student.getName()+" \nStudy in class "+student.getClass_Student());
 	}
 
-	public static ArrayList<Subject> getListSubject_of_Student() {
-		return listSubject_of_Student;
-	}
-	public static void setListSubject_of_Student(ArrayList<Subject> listSubject_of_Student) {
-		PNV_Student.listSubject_of_Student = listSubject_of_Student;
-	}
 	public static ArrayList<PNV_Student> getList_Student() {
 		return list_Student;
 	}
@@ -51,4 +44,6 @@ public class PNV_Student extends Person{
             System.out.println(i + "   " +list_Student.get(i).getName()+"   "+ list_Student.get(i).getClass_Student());
         }
     }
+
+	
 }
