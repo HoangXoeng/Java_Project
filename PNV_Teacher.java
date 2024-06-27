@@ -4,7 +4,7 @@ public class PNV_Teacher extends Person {
     private static int teacher_ID  = 0;
     private int salary;   
 
-    public PNV_Teacher () {}//This constructor only create base object (object use to call method)
+    public PNV_Teacher () {}//!This constructor only create base object (object use to call method)
 
     public PNV_Teacher (String name,String phoneNumber,int age, char gender, Address address, int salary) {
 		super(name,phoneNumber,age,gender,address);

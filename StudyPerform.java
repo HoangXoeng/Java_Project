@@ -34,15 +34,14 @@ public class StudyPerform {
         this.score = score;
     }
 
-    public static void showScore(PNV_Student student){
+    public static void showScoreOfStudent(PNV_Student student){ //! this method help student can watch score
         System.out.println("_______________SCORE LIST______________");
         for(int i = 0; i < score_ID; i++ ) {
             if (list_Score.get(i).getStudent() == student){
                 System.out.println(student.getName()+"   "+ list_Score.get(i).getSubject().getSubject_name() + list_Score.get(i).getScore() );
-            }
-        
         }
-    }
     
+    }
 
+}
 }

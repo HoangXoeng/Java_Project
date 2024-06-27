@@ -4,7 +4,7 @@ public class PNV_Student extends Person{
 	private static ArrayList<PNV_Student> list_Student = new ArrayList<PNV_Student>();
 	private static int student_ID  = 0;
 	private String class_Student;
-	public PNV_Student () {}//This constructor only create base object (object use to call method)
+	public PNV_Student () {} //!This constructor only create base object (object use to call method)
 	public PNV_Student (String name,String phoneNumber,int age, char gender, Address address, String name_class) {
 		super(name,phoneNumber,age,gender,address );
 		this.class_Student = name_class;
@@ -34,9 +34,10 @@ public class PNV_Student extends Person{
 		PNV_Student.student_ID = student_ID;
 	}
 	public void view_learning_situation(Subject subject) {
-		  for (int i = 0; i <  subject.getListSubject().size(); i++) {
-	                System.out.printf(i+1 +". %-20s %.0f Lessons \n",subject.getListSubject().get(i).getSubject_name(), subject.getListSubject().get(i).getNumber_of_lesson());
-	            }
+		System.out.println("_______________SUBJECT LIST______________");
+        for(int i = 0; i < subject.getListSubject().size(); i++ ) {
+            System.out.printf(i+1 +". %-20s %.0f lesson %20s\n",subject.getListSubject().get(i).getSubject_name(), subject.getListSubject().get(i).getNumber_of_lesson(),subject.getListSubject().get(i).getTeacher().getName());
+        }
         }	
 	public static void showStudentList() {
         System.out.println("_______________STUDENT LIST______________");
@@ -44,6 +45,10 @@ public class PNV_Student extends Person{
             System.out.println(i + "   " +list_Student.get(i).getName()+"   "+ list_Student.get(i).getClass_Student());
         }
     }
-	
-	
+	public static void showInforStudent(PNV_Student student){
+		System.out.println("Student name: "+student.getName());
+		System.out.println("Student age: "+student.getAge());
+		System.out.println("Student phone number: "+student.getPhoneNumber());
+		System.out.println("Student address: "+student.getAddress());
+	}
 }

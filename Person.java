@@ -10,6 +10,9 @@ public abstract class Person {
     public Person(String name, String phoneNumber, int age, char gender, Address address){
         this.name = name;
         this.phoneNumber = phoneNumber;
+        if (age < 1){
+            this.age = 1;
+        }
         this.age = age;
         this.gender = gender;
         this.address = address;

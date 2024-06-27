@@ -14,8 +14,8 @@ public class Application {
     static ArrayList<String> listAccStaff = new ArrayList<String>();
     static ArrayList<String> listAcc = new ArrayList<String>();
     static Scanner input = new Scanner(System.in);
-    final static File myFileStudent = new File("C:\\Users\\Admin\\Documents\\GitHub\\Java_Project\\AccountStudent.txt");
-    final static File myFileStaff = new File("C:\\Users\\Admin\\Documents\\GitHub\\Java_Project\\AccountStaff.txt");
+    final static File MYFILESTUDENT = new File("C:\\Users\\Admin\\Documents\\GitHub\\Java_Project\\AccountStudent.txt");
+    final static File MYFILETEACHER = new File("C:\\Users\\Admin\\Documents\\GitHub\\Java_Project\\AccountStaff.txt");
     // you can change your path of file.
 
     static int checkAcc(String userName, int role) { // check username already exits ?
@@ -34,25 +34,21 @@ public class Application {
 
     static void accessFile(int role) {
         File myFile; // create myFile, it will access the file base on role
-
         if (role == 1) {
-            myFile = myFileStudent;
+            myFile = MYFILESTUDENT;
             listAcc = listAccStudent;
         } else {
-            myFile = myFileStaff;
+            myFile = MYFILETEACHER;
             listAcc = listAccStaff;
         }
         // create 2 list acc, base on role, the arrayList will store data ex. role
         // 1(Student) => arrayList store data account of student
-
         try {
             // create file if file not exits
             myFile.createNewFile();
-
             FileInputStream in = new FileInputStream(myFile); // read data file (byte)
             InputStreamReader in1 = new InputStreamReader(in, "UTF-8"); // convert data from byte to utf-8
             BufferedReader file = new BufferedReader(in1); // add data to file
-
             String x;
             while ((x = file.readLine()) != null) {
                 listAcc.add(x);// read file and add data(user name , pass) to ArrayList
@@ -116,9 +112,9 @@ public class Application {
         clrscr();
         File myFile;
         if (role == 1) {
-            myFile = myFileStudent;
+            myFile = MYFILESTUDENT;
         } else {
-            myFile = myFileStaff;
+            myFile = MYFILETEACHER;
         }
         System.out.println("------------SIGN UP------------");
         try {
@@ -142,53 +138,44 @@ public class Application {
         }
     }
 
-    public static void modifiInformation(PNV_Student student, int choseModifi) {
-        do {
-            switch (choseModifi) {
-                case 1:
-                    input.nextLine();
-                    System.out.print("Enter new name: ");
-                    String name = input.nextLine();
-                    student.setName(name);
-                    break;
-                case 2:
-                    input.nextLine();
-                    System.out.print("Enter new phone number: ");
-                    String phoneNum = input.nextLine();
-                    student.setPhoneNumber(phoneNum);
-                    break;
-                case 3:
-                    input.nextLine();
-                    System.out.print("Enter new age: ");
-                    int age = input.nextInt();
-                    student.setAge(age);
-                    break;
-                case 4:
-                    input.nextLine();
-                    System.out.print("Enter new gender (1 letter): ");
-                    char gender = input.nextLine().charAt(0); // if user enter mone than 1 letter, App will recive firs
-                                                              // letter
-                    student.setAge(gender);
-                    break;
-                case 5:
-                    input.nextLine();
-                    System.out.print("Enter name of street: ");
-                    String street = input.nextLine();
-                    System.out.print("Enter house number (int)");
-                    int houseNumber = input.nextInt();
-                    student.setAddress(new Address(street, houseNumber));
-                    break;
-                case 6:
-                    input.nextLine();
-                    System.out.print("Enter new class: ");
-                    String className = input.nextLine();
-                    student.setClass_Student(className);
-                    break;
-                default:
-                    break;
-            }
-
-        } while (choseModifi != 7);
+    public static void modifiInformation(Person person, int choseModifi) {
+        switch (choseModifi) {
+            case 1:
+                input.nextLine();
+                System.out.print("Enter new name: ");
+                String name = input.nextLine();
+                person.setName(name);
+                break;
+            case 2:
+                input.nextLine();
+                System.out.print("Enter new phone number: ");
+                String phoneNum = input.nextLine();
+                person.setPhoneNumber(phoneNum);
+                break;
+            case 3:
+                input.nextLine();
+                System.out.print("Enter new age: ");
+                int age = input.nextInt();
+                person.setAge(age);
+                break;
+            case 4:
+                input.nextLine();
+                System.out.print("Enter new gender (1 letter): ");
+                char gender = input.nextLine().charAt(0); // if user enter mone than 1 letter, App will recive firs
+                                                          // letter
+                person.setAge(gender);
+                break;
+            case 5:
+                input.nextLine();
+                System.out.print("Enter name of street: ");
+                String street = input.nextLine();
+                System.out.print("Enter house number (int)");
+                int houseNumber = input.nextInt();
+                person.setAddress(new Address(street, houseNumber));
+                break;
+            default:
+                break;
+        }
     }
 
     public static void studentMenthod(PNV_Student student) {
@@ -202,33 +189,40 @@ public class Application {
             System.out.println(PNV_Student.getList_Student().get(id).getName());
             System.out.println("Chose funtion");
             System.out.println("1: Modifi infomation");
-            System.out.println("2: View list of subject in PNV");
-            System.out.println("3: Check score");
-            System.out.println("4: Exit");
+            System.out.println("2: View infomation");
+            System.out.println("3: View list of subject in PNV");
+            System.out.println("4: Check score");
+            System.out.println("5: Exit");
             chose = input.nextInt();
             switch (chose) {
                 case 1:
-                    System.out.println("Choose your infor you want modifi: ");
-                    System.out.println("1. Modifi name");
-                    System.out.println("2. Modifi phone number");
-                    System.out.println("3. Modifi age");
-                    System.out.println("4. Modifi gender");
-                    System.out.println("5. Modifi address");
-                    System.out.println("6. Modifi class");
-                    System.out.println("7. Exit");
-                    int choseModifi = input.nextInt();
-                    modifiInformation(PNV_Student.getList_Student().get(id), choseModifi);
+                    int choseModifi;
+                    do {
+                        System.out.println("Choose your infor you want modifi: ");
+                        System.out.println("1. Modifi name");
+                        System.out.println("2. Modifi phone number");
+                        System.out.println("3. Modifi age");
+                        System.out.println("4. Modifi gender");
+                        System.out.println("5. Modifi address");
+                        System.out.println("6. Exit");
+                        choseModifi = input.nextInt();
+                        modifiInformation(PNV_Student.getList_Student().get(id), choseModifi);
+                    } while (choseModifi != 6);
+
                     break;
                 case 2:
-                    Subject.showSubjectList();
+                    PNV_Student.showInforStudent(PNV_Student.getList_Student().get(id));
                     break;
                 case 3:
-                    StudyPerform.showScore(PNV_Student.getList_Student().get(id));
+                    Subject.showSubjectList();
+                    break;
+                case 4:
+                    StudyPerform.showScoreOfStudent(PNV_Student.getList_Student().get(id));
                     break;
                 default:
                     break;
             }
-        } while (chose != 4);
+        } while (chose != 5);
 
     }
 
@@ -255,7 +249,6 @@ public class Application {
                 break;
             }
         }
-
         input.close();
 
     }
@@ -286,7 +279,6 @@ public class Application {
         Subject sb5 = new Subject("PLT1", 90, tc3);
         Subject sb6 = new Subject("PLT2", 45, tc3);
 
-        
         StudyPerform stpm1 = new StudyPerform(st1, sb1, 8);
         StudyPerform stpm2 = new StudyPerform(st2, sb1, 8);
         StudyPerform stpm3 = new StudyPerform(st3, sb1, 8);
