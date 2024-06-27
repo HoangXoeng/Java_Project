@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Subject {
-	private static int subject_ID  = 0;
+	private static int numberOfSubject  = 0;
 	private static ArrayList<Subject> listSubject = new ArrayList<Subject>();
 	private String subject_name;
 	private int number_of_lesson;
@@ -11,7 +11,7 @@ public class Subject {
 		this.number_of_lesson = number_of_lesson;
 		this.teacher = teacher;
 		listSubject.add(this);
-		subject_ID = subject_ID + 1;
+		numberOfSubject = numberOfSubject + 1;
 	}
 	
 	@Override
@@ -19,10 +19,10 @@ public class Subject {
 		return "subject_name=" + subject_name + "";
 	}
 	public static int getSubject_ID() {
-		return subject_ID;
+		return numberOfSubject;
 	}
-	public static void setSubject_ID(int subject_ID) {
-		Subject.subject_ID = subject_ID;
+	public static void setSubject_ID(int numberOfSubject) {
+		Subject.numberOfSubject = numberOfSubject;
 	}
 	public static ArrayList<Subject> getListSubject() {
 		return listSubject;
@@ -48,8 +48,8 @@ public class Subject {
 	}
 	public static void showSubjectList() {
         System.out.println("_______________SUBJECT LIST______________");
-        for(int i = 0; i < subject_ID; i++ ) {
-            System.out.printf(i+1 +". %-20s %.0f lesson %20s\n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson(),listSubject.get(i).getTeacher().getName());
+        for(int i = 0; i < numberOfSubject; i++ ) {
+            System.out.printf(i +". %-20s %.0f lesson %20s\n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson(),listSubject.get(i).getTeacher().getName());
         }
     }
 	

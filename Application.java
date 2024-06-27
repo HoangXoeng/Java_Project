@@ -192,7 +192,7 @@ public class Application {
             System.out.println("2: View infomation");
             System.out.println("3: View list of subject in PNV");
             System.out.println("4: Check score");
-            System.out.println("5: Exit");
+            System.out.println("5: Subcribe subject");
             chose = input.nextInt();
             switch (chose) {
                 case 1:
@@ -219,10 +219,16 @@ public class Application {
                 case 4:
                     StudyPerform.showScoreOfStudent(PNV_Student.getList_Student().get(id));
                     break;
+                case 5:
+                    Subject.showSubjectList();
+                    System.out.println("Chose subject you want to subcribe");
+                    int choseSubject = input.nextInt();
+                    StudyPerform.addStudyPerformList(PNV_Student.getList_Student().get(id),Subject.getListSubject().get(choseSubject));
+                    break;
                 default:
                     break;
             }
-        } while (chose != 5);
+        } while (chose != 6);
 
     }
 

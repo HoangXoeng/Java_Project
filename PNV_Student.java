@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class PNV_Student extends Person{
 	private static ArrayList<PNV_Student> list_Student = new ArrayList<PNV_Student>();
-	private static int student_ID  = 0;
+	private static int numberOfStudent  = 0;
 	private String class_Student;
 	public PNV_Student () {} //!This constructor only create base object (object use to call method)
 	public PNV_Student (String name,String phoneNumber,int age, char gender, Address address, String name_class) {
 		super(name,phoneNumber,age,gender,address );
 		this.class_Student = name_class;
 		list_Student.add(this);
-		student_ID = student_ID + 1;
+		numberOfStudent = numberOfStudent + 1;
 	}
 	public String getClass_Student() {
 		return class_Student;
@@ -28,10 +28,10 @@ public class PNV_Student extends Person{
 		PNV_Student.list_Student = list_Student;
 	}
 	public static int getStudent_ID() {
-		return student_ID;
+		return numberOfStudent;
 	}
-	public static void setStudent_ID(int student_ID) {
-		PNV_Student.student_ID = student_ID;
+	public static void setStudent_ID(int numberOfStudent) {
+		PNV_Student.numberOfStudent = numberOfStudent;
 	}
 	public void view_learning_situation(Subject subject) {
 		System.out.println("_______________SUBJECT LIST______________");
@@ -41,7 +41,7 @@ public class PNV_Student extends Person{
         }	
 	public static void showStudentList() {
         System.out.println("_______________STUDENT LIST______________");
-        for(int i = 0; i < student_ID; i++ ) {
+        for(int i = 0; i < numberOfStudent; i++ ) {
             System.out.println(i + "   " +list_Student.get(i).getName()+"   "+ list_Student.get(i).getClass_Student());
         }
     }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class PNV_Teacher extends Person {
     private static ArrayList<PNV_Teacher> list_Teacher = new ArrayList<PNV_Teacher>();
-    private static int teacher_ID  = 0;
+    private static int numberOfTeacher  = 0;
     private int salary;   
 
     public PNV_Teacher () {}//!This constructor only create base object (object use to call method)
@@ -10,7 +10,7 @@ public class PNV_Teacher extends Person {
 		super(name,phoneNumber,age,gender,address);
 		this.salary = salary;
 		list_Teacher.add(this);
-		teacher_ID = teacher_ID + 1;
+		numberOfTeacher = numberOfTeacher + 1;
 	}
 
     public static ArrayList<PNV_Teacher> getList_Teacher() {
@@ -22,11 +22,11 @@ public class PNV_Teacher extends Person {
     }
 
     public static int getTeacher_ID() {
-        return teacher_ID;
+        return numberOfTeacher;
     }
 
-    public static void setTeacher_ID(int teacher_ID) {
-        PNV_Teacher.teacher_ID = teacher_ID;
+    public static void setTeacher_ID(int numberOfTeacher) {
+        PNV_Teacher.numberOfTeacher = numberOfTeacher;
     }
 
     public int getSalary() {
@@ -38,7 +38,7 @@ public class PNV_Teacher extends Person {
     }
     public static void showTeacherList() {
         System.out.println("_______________TEACHER LIST______________");
-        for(int i = 1; i < teacher_ID; i++ ) {
+        for(int i = 1; i < numberOfTeacher; i++ ) {
             System.out.println(i + "   " +list_Teacher.get(i).getName()+"   "+ list_Teacher.get(i).getSalary());
         }
     }
