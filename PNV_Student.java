@@ -45,10 +45,12 @@ public class PNV_Student extends Person{
             System.out.println(i + "   " +list_Student.get(i).getName()+"   "+ list_Student.get(i).getClass_Student());
         }
     }
-	public static void showInforStudent(PNV_Student student){
-		System.out.println("Student name: "+student.getName());
-		System.out.println("Student age: "+student.getAge());
-		System.out.println("Student phone number: "+student.getPhoneNumber());
-		System.out.println("Student address: "+student.getAddress());
+	public void showInfor(){
+		System.out.println("Student name: "+this.getName());
+		System.out.println("Student age: "+this.getAge());
+		System.out.println("Student phone number: "+this.getPhoneNumber());
+		System.out.println("Student address: "+ this.getAddress());
+		System.out.println("Student class: "+this.getClass_Student());
+		System.out.println("-------------------------------------------------");
 	}
 }

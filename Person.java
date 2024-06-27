@@ -64,7 +64,8 @@ public abstract class Person {
         return "Person [name=" + name + ", phoneNumber=" + phoneNumber + ", age=" + age + ", gender=" + gender
                 + ", address=" + address + "]";
     }
-
+    public abstract void showInfor();
+		
 
     
 }

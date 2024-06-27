@@ -38,8 +38,15 @@ public class PNV_Teacher extends Person {
     }
     public static void showTeacherList() {
         System.out.println("_______________TEACHER LIST______________");
-        for(int i = 1; i < numberOfTeacher; i++ ) {
-            System.out.println(i + "   " +list_Teacher.get(i).getName()+"   "+ list_Teacher.get(i).getSalary());
+        for(int i = 0; i < numberOfTeacher; i++ ) {
+            System.out.println(i + "   " +list_Teacher.get(i).getName());
         }
     }
+    public void showInfor(){
+		System.out.println("Teacher name: "+this.getName());
+		System.out.println("Teacher age: "+this.getAge());
+		System.out.println("Teacher phone number: "+this.getPhoneNumber());
+		System.out.println("Teacher address: "+ this.getAddress());
+        System.out.println("Teacher salary: " + this.getSalary());
+	}
 }

@@ -5,7 +5,7 @@ public class Subject {
 	private String subject_name;
 	private int number_of_lesson;
 	private PNV_Teacher teacher;
-	public Subject() {}
+
 	public Subject(String name_of_subject,int number_of_lesson, PNV_Teacher teacher) {
 		this.subject_name = name_of_subject;
 		this.number_of_lesson = number_of_lesson;
@@ -47,10 +47,11 @@ public class Subject {
 		this.teacher = teacher;
 	}
 	public static void showSubjectList() {
-        System.out.println("_______________SUBJECT LIST______________");
+        System.out.println("____________________SUBJECT LIST___________________");
         for(int i = 0; i < numberOfSubject; i++ ) {
             System.out.printf(i +". %-20s %.0f lesson %20s\n",listSubject.get(i).getSubject_name(), listSubject.get(i).getNumber_of_lesson(),listSubject.get(i).getTeacher().getName());
         }
+		System.out.println("----------------------------------------------------");
     }
 	
 }

@@ -2,3 +2,7 @@ nguyen123
 nguyen123
 concobebe123
 concobebe123
+cd "c:\Users\Admin\Documents\GitHub\Java_Project\" ; if ($?) { javac Application.java } ; if ($?) { java Application }
+cd "c:\Users\Admin\Documents\GitHub\Java_Project\" ; if ($?) { javac Application.java } ; if ($?) { java Application }
+nguyen123123
+nguyen123123
