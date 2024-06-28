@@ -134,7 +134,7 @@ public class Application {
             filein.write(password + "\n"); // add password to file
             filein.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Application have bug, restart Application");
         }
     }
 
@@ -198,7 +198,7 @@ public class Application {
         System.out.println("List of student: ");
         PNV_Student.showStudentList();
         System.out.print("Chose your id student:\n-->");
-        int id = input.nextInt();
+        int id = choseHadCheck();
         do {
 
             clrscr();
@@ -213,12 +213,13 @@ public class Application {
             System.out.println("-   6: Exit                                  -");
             System.out.println("----------------------------------------------");
             System.out.print("Chose funtion:\n-->");
-            chose = input.nextInt();
+            chose = choseHadCheck();
             switch (chose) {
                 case 1:
                     clrscr();
                     int choseModifi;
                     do {
+                        clrscr();
                         System.out.println("---------------------Menu---------------------");
                         System.out.println("----------------------------------------------");
                         System.out.println("-       Choose your infor you want modifi:    -");
@@ -230,7 +231,7 @@ public class Application {
                         System.out.println("-       6. Exit                               -");
                         System.out.println("-----------------------------------------------");
                         System.out.println("Enter your chose\n-->");
-                        choseModifi = input.nextInt();
+                        choseModifi = choseHadCheck();
                         modifiInformation(PNV_Student.getList_Student().get(id), choseModifi);
                     } while (choseModifi != 6);
                     break;
@@ -253,7 +254,7 @@ public class Application {
                     clrscr();
                     Subject.showSubjectList();
                     System.out.print("Chose subject you want to subcribe\n-->");
-                    int choseSubject = input.nextInt();
+                    int choseSubject = choseHadCheck();
                     StudyPerform.addStudyPerformList(PNV_Student.getList_Student().get(id),
                             Subject.getListSubject().get(choseSubject));
                     break;
@@ -264,27 +265,35 @@ public class Application {
     }
 
     public static void teacherMethod(PNV_Teacher teacher) {
+        clrscr();
         int chose;
         System.out.println("Welcome back");
         System.out.println("List of teacher: ");
         PNV_Teacher.showTeacherList();
         System.out.println("Chose your id teacher:");
-        int id = input.nextInt();
+        int id = choseHadCheck();
         do {
-            System.out.println("Chose funtion");
-            System.out.println("1: View information of teacher");
-            System.out.println("2: Modifi information");
-            System.out.println("3: View list of student");
-            System.out.println("4: Modifi score");
-            System.out.println("5: View Student score");
-            System.out.println("6: Exit ");
-            chose = input.nextInt();
+            clrscr();
+            System.out.println("---------------------Menu---------------------");
+            System.out.println("----------------------------------------------");
+            System.out.println("-               Chose funtion                -");
+            System.out.println("-       1: View information of teacher       -");
+            System.out.println("-       2: Modifi information                -");
+            System.out.println("-       3: View list of student              -");
+            System.out.println("-       4: Modifi score                      -");
+            System.out.println("-       5: View Student score                -");
+            System.out.println("-       6: Exit                              -");
+            System.out.println("----------------------------------------------");
+            chose = choseHadCheck();
             switch (chose) {
                 case 1:
+                    clrscr();
                     System.out.println("--------------Infor--------------");
                     PNV_Teacher.getList_Teacher().get(id).showInfor();
+                    pressEnter();
                     break;
                 case 2:
+                    clrscr();
                     int choseModifi;
                     do {
                         System.out.println("Choose your infor you want modifi: ");
@@ -294,15 +303,18 @@ public class Application {
                         System.out.println("4. Modifi gender");
                         System.out.println("5. Modifi address");
                         System.out.println("6. Exit");
-                        choseModifi = input.nextInt();
+                        choseModifi = choseHadCheck();
                         modifiInformation(PNV_Teacher.getList_Teacher().get(id), choseModifi);
                     } while (choseModifi != 6);
                     break;
                 case 3:
+                    clrscr();
                     System.out.println("List of student: ");
                     PNV_Student.showStudentList();
+                    pressEnter();
                     break;
                 case 4:
+                    clrscr();
                     ArrayList<StudyPerform> listStudentTeachByTeacher = new ArrayList<StudyPerform>();
                     listStudentTeachByTeacher = StudyPerform.showStudyPerTeachBy(PNV_Teacher.getList_Teacher().get(id));
                     int choseStudentModifiScore;
@@ -311,21 +323,22 @@ public class Application {
                         System.out.println(i + " " + listStudentTeachByTeacher.get(i).getStudent().getName());
                     }
                     System.out.println("Enter id student you want to modifi score");
-                    choseStudentModifiScore = input.nextInt();
+                    choseStudentModifiScore = choseHadCheck();
                     System.out.println("The student have soce is: "
                             + listStudentTeachByTeacher.get(choseStudentModifiScore).getScore());
                     System.out.print("enter new score: ");
-                    int score = input.nextInt();
+                    float score = input.nextFloat();
                     listStudentTeachByTeacher.get(choseStudentModifiScore).setScore(score);
                     System.out.println("Update successful");
                     break;
                 case 5:
+                    clrscr();
                     listStudentTeachByTeacher = StudyPerform.showStudyPerTeachBy(PNV_Teacher.getList_Teacher().get(id));
                     for (int i = 0; i < listStudentTeachByTeacher.size(); i++) {
                         System.out.println(i + " " + listStudentTeachByTeacher.get(i).getStudent().getName() + "  "
                                 + listStudentTeachByTeacher.get(i).getScore());
                     }
-
+                    pressEnter();
                     break;
                 default:
                     break;
@@ -333,11 +346,30 @@ public class Application {
         } while (chose != 6);
     }
 
-    public static void main(String[] args) {
-        runData();// run data for program, you can understand this funtion will create object for
-                  // this program
-        PNV_Student pnv_Student = new PNV_Student();
-        PNV_Teacher pnv_Teacher = new PNV_Teacher();
+    public static int choseHadCheck() {
+        int chose;
+        while (true) {
+            try {
+                System.out.print("Enter your chose\n-->");
+                chose = input.nextInt();
+                while (true) {
+                    if (chose > 0) {
+                        return chose;
+                    } else {
+                        System.out.print("Chose must be greater than 0, please try again\n-->");
+                        chose = input.nextInt();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Wrong format, please try again");
+                input.nextLine();
+            }
+        }
+    }
+
+
+    public static int showMenu() {
+        clrscr();
         System.out.println("====================================");
         System.out.println("=       Welcome to application     =");
         System.out.println("=         Choose your role         =");
@@ -345,24 +377,31 @@ public class Application {
         System.out.println("= 2. Teacher                       =");
         System.out.println("= 3. Exit                          =");
         System.out.println("====================================");
-        System.out.print("Enter your chose\n-->");
-        int choose = input.nextInt();
+        int choose = choseHadCheck();
+        return choose;
+    }
+
+    public static void main(String[] args) {
+        runData();// run data for program, you can understand this funtion will create object for
+                  // this program
+        PNV_Student pnv_Student = new PNV_Student();
+        PNV_Teacher pnv_Teacher = new PNV_Teacher();
+        int choose = showMenu();
 
         do {
             clrscr();
             switch (choose) {
-                case 1: 
-                    
+                case 1:
+                    accessFile(1);// prepare list of account
                     int choseTypeLogin;
                     do {
-                        accessFile(1);// prepare list of account
                         clrscr();
-                        System.out.println("Are you already have a accout");
-                        System.out.println("1 Yes (Log in)");
+                        System.out.println("Are you already have a account ?");
+                        System.out.println("1  Yes (Log in)");
                         System.out.println("2. No (Sign up)");
                         System.out.println("3. Exit");
                         System.out.print("-->");
-                        choseTypeLogin = input.nextInt();
+                        choseTypeLogin = choseHadCheck();
                         switch (choseTypeLogin) {
                             case 1:
                                 clrscr();
@@ -378,25 +417,26 @@ public class Application {
                                 break;
                         }
                     } while (choseTypeLogin != 3);
-                    break;    
-                case 2: {
+                    choose = showMenu();
+                    break;
+                case 2:
                     accessFile(2);// prepare list of account
                     choseTypeLogin = 0;
                     do {
-                        accessFile(1);// prepare list of account
                         clrscr();
-                        System.out.println("Are you already have a accout");
-                        System.out.println("1 Yes (Log in)");
+                        System.out.println("Are you already have a account ?");
+                        System.out.println("1  Yes (Log in)");
                         System.out.println("2. No (Sign up)");
                         System.out.println("3. Exit");
                         System.out.print("-->");
-                        choseTypeLogin = input.nextInt();
+                        choseTypeLogin = choseHadCheck();
                         switch (choseTypeLogin) {
                             case 1:
                                 clrscr();
                                 logIn(2);
                                 clrscr();
                                 teacherMethod(pnv_Teacher);
+                                break;
                             case 2:
                                 clrscr();
                                 signUp(2);
@@ -405,11 +445,12 @@ public class Application {
                                 break;
                         }
                     } while (choseTypeLogin != 3);
-                    break;    
-                }
+                    choose = showMenu();
+                    break;
             }
         } while (choose != 3);
         input.close();
+
     }
 
     public static void runData() {
