@@ -12,8 +12,9 @@ public abstract class Person {
         this.phoneNumber = phoneNumber;
         if (age < 1){
             this.age = 1;
+        }else{
+            this.age = age;
         }
-        this.age = age;
         this.gender = gender;
         this.address = address;
     }

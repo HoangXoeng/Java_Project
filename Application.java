@@ -176,8 +176,7 @@ public class Application {
             default:
                 break;
         }
-    }
-                                     
+    }   
     public static void pressEnter() { // this method make you waiting (it mean when the program will be continue when you press any key)
         boolean condition;
         do {
