@@ -177,8 +177,8 @@ public class Application {
                 break;
         }
     }
-
-    public static void pressEnter() {
+                                     
+    public static void pressEnter() { // this method make you waiting (it mean when the program will be continue when you press any key)
         boolean condition;
         do {
             condition = true;
@@ -188,7 +188,6 @@ public class Application {
                 input.nextLine();
                 condition = false;
             }
-
         } while (condition);
     }
 
@@ -284,6 +283,7 @@ public class Application {
             System.out.println("-       5: View Student score                -");
             System.out.println("-       6: Exit                              -");
             System.out.println("----------------------------------------------");
+            System.out.println("Enter funtion you chose");
             chose = choseHadCheck();
             switch (chose) {
                 case 1:
@@ -296,13 +296,15 @@ public class Application {
                     clrscr();
                     int choseModifi;
                     do {
-                        System.out.println("Choose your infor you want modifi: ");
-                        System.out.println("1. Modifi name");
-                        System.out.println("2. Modifi phone number");
-                        System.out.println("3. Modifi age");
-                        System.out.println("4. Modifi gender");
-                        System.out.println("5. Modifi address");
-                        System.out.println("6. Exit");
+                        System.out.println("----------------MODIFI----------------");
+                        System.out.println("-       1. Modifi name               -");
+                        System.out.println("-       2. Modifi phone number       -");
+                        System.out.println("-       3. Modifi age                -");
+                        System.out.println("-       4. Modifi gender             -");
+                        System.out.println("-       5. Modifi address            -");
+                        System.out.println("-       6. Exit                      -");
+                        System.out.println("--------------------------------------");
+                        System.out.println("Enter your infor your want to modifi");
                         choseModifi = choseHadCheck();
                         modifiInformation(PNV_Teacher.getList_Teacher().get(id), choseModifi);
                     } while (choseModifi != 6);
@@ -350,23 +352,21 @@ public class Application {
         int chose;
         while (true) {
             try {
-                System.out.print("Enter your chose\n-->");
                 chose = input.nextInt();
                 while (true) {
-                    if (chose > 0) {
+                    if (chose >= 0) {
                         return chose;
                     } else {
-                        System.out.print("Chose must be greater than 0, please try again\n-->");
+                        System.out.print("Chose must be greater or equal than 0, please try again\n-->");
                         chose = input.nextInt();
                     }
                 }
             } catch (Exception e) {
-                System.out.println("Wrong format, please try again");
+                System.out.println("Wrong format, please try again\n-->");
                 input.nextLine();
             }
         }
     }
-
 
     public static int showMenu() {
         clrscr();
@@ -377,6 +377,7 @@ public class Application {
         System.out.println("= 2. Teacher                       =");
         System.out.println("= 3. Exit                          =");
         System.out.println("====================================");
+        System.out.println("Chose your role");
         int choose = choseHadCheck();
         return choose;
     }
@@ -400,7 +401,7 @@ public class Application {
                         System.out.println("1  Yes (Log in)");
                         System.out.println("2. No (Sign up)");
                         System.out.println("3. Exit");
-                        System.out.print("-->");
+                        System.out.println("Enter number to chose");
                         choseTypeLogin = choseHadCheck();
                         switch (choseTypeLogin) {
                             case 1:
@@ -428,7 +429,7 @@ public class Application {
                         System.out.println("1  Yes (Log in)");
                         System.out.println("2. No (Sign up)");
                         System.out.println("3. Exit");
-                        System.out.print("-->");
+                        System.out.println("Enter number to chose");
                         choseTypeLogin = choseHadCheck();
                         switch (choseTypeLogin) {
                             case 1:
