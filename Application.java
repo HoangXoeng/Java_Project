@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Application {
     public static ArrayList<String> listAccStudent = new ArrayList<String>();
     public static ArrayList<String> listAccStaff = new ArrayList<String>();
@@ -52,6 +50,7 @@ public class Application {
             InputStreamReader in1 = new InputStreamReader(in, "UTF-8"); // convert data from byte to utf-8
             BufferedReader file = new BufferedReader(in1); // add data to file
             String x;
+            listAcc.clear();
             while ((x = file.readLine()) != null) {
                 listAcc.add(x);// read file and add data(user name , pass) to ArrayList
             }
@@ -392,7 +391,7 @@ public class Application {
             clrscr();
             switch (choose) {
                 case 1:
-                    accessFile(1);// prepare list of account
+                    
                     int choseTypeLogin;
                     do {
                         clrscr();
@@ -404,12 +403,14 @@ public class Application {
                         choseTypeLogin = choseHadCheck();
                         switch (choseTypeLogin) {
                             case 1:
+                                accessFile(1);// prepare list of account
                                 clrscr();
                                 logIn(1);
                                 clrscr();
                                 studentMenthod(pnv_Student);
                                 break;
                             case 2:
+                                accessFile(1);// prepare list of account
                                 clrscr();
                                 signUp(1);
                                 break;
@@ -420,7 +421,6 @@ public class Application {
                     choose = showMenu();
                     break;
                 case 2:
-                    accessFile(2);// prepare list of account
                     choseTypeLogin = 0;
                     do {
                         clrscr();
@@ -433,12 +433,14 @@ public class Application {
                         switch (choseTypeLogin) {
                             case 1:
                                 clrscr();
+                                accessFile(2);// prepare list of account
                                 logIn(2);
                                 clrscr();
                                 teacherMethod(pnv_Teacher);
                                 break;
                             case 2:
                                 clrscr();
+                                accessFile(2);// prepare list of account
                                 signUp(2);
                                 break;
                             default:
