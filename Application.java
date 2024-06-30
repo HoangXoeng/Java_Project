@@ -391,7 +391,6 @@ public class Application {
             clrscr();
             switch (choose) {
                 case 1:
-                    
                     int choseTypeLogin;
                     do {
                         clrscr();
