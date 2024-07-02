@@ -7,18 +7,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Application {
     public static ArrayList<String> listAccStudent = new ArrayList<String>();
     public static ArrayList<String> listAccStaff = new ArrayList<String>();
     public static ArrayList<String> listAcc = new ArrayList<String>();
     public static Scanner input = new Scanner(System.in);
     public final static File MYFILESTUDENT = new File(
-            "C:\\Users\\Admin\\Documents\\GitHub\\Java_Project\\AccountStudent.txt");
+            "D:\\Code\\Java\\Java_Project\\AccountStudent.txt");
     public final static File MYFILETEACHER = new File(
-            "C:\\Users\\Admin\\Documents\\GitHub\\Java_Project\\AccountStaff.txt");
+            "D:\\Code\\Java\\Java_Project\\AccountStaff.txt");
     // you can change your path of file.
 
-    public static int checkAcc(String userName, int role) { // check username already exits ?
+    public static int checkAccExits(String userName, int role) { // check username already exits ?
 
         if (role == 1) {
             listAcc = listAccStudent;
@@ -66,7 +67,7 @@ public class Application {
         System.out.println("------------LOG IN------------");
         System.out.print("\nUser name: ");
         String userName = input.nextLine();
-        while (checkAcc(userName, role) == -1) {
+        while (checkAccExits(userName, role) == -1) {
             count++;
             if (count == 3) {
                 System.out.println("Enter wrong 3 times, switch to sing up case");
@@ -80,7 +81,7 @@ public class Application {
         }
         if (count == 3)
             return;
-        int indexPassword = checkAcc(userName, role) + 1;
+        int indexPassword = checkAccExits(userName, role) + 1;
         count = 0;
         System.out.print("Password: ");
         String password = input.nextLine();
@@ -122,7 +123,7 @@ public class Application {
 
             System.out.print("\nUser name: ");
             String userName = input.nextLine();
-            while (checkAcc(userName, role) != -1) { // check user name already exits ???
+            while (checkAccExits(userName, role) != -1) { // check user name already exits ???
                 System.out.println("This account name has already existed! Try again");
                 System.out.print("User name: ");
                 userName = input.nextLine();
@@ -175,12 +176,14 @@ public class Application {
             default:
                 break;
         }
-    }   
-    public static void pressEnter() { // this method make you waiting (it mean when the program will be continue when you press any key)
+    }
+
+    public static void pressEnter() { // this method make you waiting (it mean when the program will be continue when
+                                      // you press any key)
         boolean condition;
         do {
             condition = true;
-            System.out.println("Press any key to continue");
+            System.out.println("Press enter to continue");
             String out = input.nextLine();
             if (out != null) {
                 input.nextLine();
@@ -373,7 +376,8 @@ public class Application {
         System.out.println("=         Choose your role         =");
         System.out.println("= 1. Student                       =");
         System.out.println("= 2. Teacher                       =");
-        System.out.println("= 3. Exit                          =");
+        System.out.println("= 3. Administrastor                =");
+        System.out.println("= 4. Exit                          =");
         System.out.println("====================================");
         System.out.println("Chose your role");
         int choose = choseHadCheck();
@@ -417,10 +421,11 @@ public class Application {
                                 break;
                         }
                     } while (choseTypeLogin != 3);
+                    choseTypeLogin = 0;
                     choose = showMenu();
                     break;
                 case 2:
-                    choseTypeLogin = 0;
+                    
                     do {
                         clrscr();
                         System.out.println("Are you already have a account ?");
@@ -446,11 +451,124 @@ public class Application {
                                 break;
                         }
                     } while (choseTypeLogin != 3);
+                    choseTypeLogin = 0;
+                    choose = showMenu();
+                    break;
+                case 3:
+                    adminMethod();
                     choose = showMenu();
                     break;
             }
-        } while (choose != 3);
+        } while (choose != 4);
+        // choose = showMenu();
         input.close();
+    }
+
+    public static void adminMethod() {
+        int choseAdmin;
+        do {
+            System.out.println("Welcome back Administrator");
+            System.out.println("List funtion");
+            System.out.println("1. Modifi Student");
+            System.out.println("2. Modifi teacher");
+            System.out.println("3. Exit");
+            choseAdmin = choseHadCheck();
+            switch (choseAdmin) {
+                case 1:
+                    int choseAdminInStudent;
+                    do {
+                        System.out.println("List funtion");
+                        System.out.println("1.Add new Student");
+                        System.out.println("2.Remove Student");
+                        System.out.println("3. Exit");
+                        choseAdminInStudent = choseHadCheck();
+                        switch (choseAdminInStudent) {
+                            case 1:
+                                System.out.print("Enter name of Student: ");
+                                String name = input.nextLine();
+                                System.out.print("Enter phone number of student: ");
+                                String phoneNum = input.nextLine();
+                                System.out.print("Enter age of student: ");
+                                int age = input.nextInt();
+                                input.nextLine();
+                                System.out.print("Enter gender of student: ");
+                                char gender = input.nextLine().charAt(0);
+                                Address address = new Address(null, 0);
+                                System.out.println("Enter class of student");
+                                String classStudent = input.nextLine();
+                                PNV_Student newStudent = new PNV_Student(name, phoneNum, age, gender, address,
+                                        classStudent);
+                                System.out.println("List of student after update");
+                                PNV_Student.showStudentList();
+                                break;
+                            case 2:
+                                PNV_Student.showStudentList();
+                                System.out.println("Enter Id student you want to remove");
+                                int idRemove = input.nextInt();
+                                PNV_Student.getList_Student().remove(idRemove);
+                                System.out.println("List of student after update");
+                                PNV_Student.showStudentList();
+                                break;
+                            default:
+                                break;
+                        }
+                    } while (choseAdminInStudent != 3);
+                    break;
+                case 2:
+                    int choseAdminInTeacher;
+                    do {
+                        System.out.println("List funtion");
+                        System.out.println("1.Add new Teacher");
+                        System.out.println("2.Remove Teacher");
+                        System.out.println("3.Modifi salary");
+                        System.out.println("4. Exit");
+                        choseAdminInTeacher = choseHadCheck();
+                        switch (choseAdminInTeacher) {
+                            case 1:
+                                System.out.print("Enter name of teacher: ");
+                                String name = input.nextLine();
+                                System.out.print("Enter phone number of teacher: ");
+                                String phoneNum = input.nextLine();
+                                System.out.print("Enter age of teacher: ");
+                                int age = input.nextInt();
+                                input.nextLine();
+                                System.out.print("Enter gender of teacher: ");
+                                char gender = input.nextLine().charAt(0);
+                                Address address = new Address(null, 0);
+                                System.out.println("Enter salary of teacher");
+                                int salary = input.nextInt();
+                                PNV_Teacher newTeacher = new PNV_Teacher(name, phoneNum, age, gender, address, salary);
+                                System.out.println("List of teacher after update");
+                                PNV_Teacher.showTeacherList();
+                                break;
+                            case 2:
+                                PNV_Teacher.showTeacherList();
+                                System.out.println("Enter Id teacher you want to remove");
+                                int idRemove = input.nextInt();
+                                PNV_Teacher.getList_Teacher().remove(idRemove);
+                                System.out.println("List of teacher after update");
+                                PNV_Student.showStudentList();
+                                break;
+                            case 3:
+                                PNV_Teacher.showTeacherList();
+                                System.out.println("Enter Id teacher you want to modifi salary");
+                                int idTeacher = choseHadCheck();
+                                PNV_Teacher.getList_Teacher().get(idTeacher).showInfor();
+                                System.out.print("Enter new salary: ");
+                                salary = input.nextInt();
+                                PNV_Teacher.getList_Teacher().get(idTeacher).setSalary(salary);
+                                System.out.println("Teacher Information after modifi");
+                                PNV_Teacher.getList_Teacher().get(idTeacher).showInfor();
+                                break;
+                            default:
+                                break;
+                        }
+                    } while (choseAdminInTeacher != 4);
+                    break;
+                default:
+                    break;
+            }
+        } while (choseAdmin != 3);
 
     }
 

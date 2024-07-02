@@ -41,7 +41,7 @@ public class PNV_Student extends Person{
         }	
 	public static void showStudentList() {
         System.out.println("_______________STUDENT LIST______________");
-        for(int i = 0; i < numberOfStudent; i++ ) {
+        for(int i = 0; i < list_Student.size(); i++ ) {
             System.out.println(i + "   " +list_Student.get(i).getName()+"   "+ list_Student.get(i).getClass_Student());
         }
     }

@@ -38,7 +38,7 @@ public class PNV_Teacher extends Person {
     }
     public static void showTeacherList() {
         System.out.println("_______________TEACHER LIST______________");
-        for(int i = 0; i < numberOfTeacher; i++ ) {
+        for(int i = 0; i <list_Teacher.size(); i++ ) {
             System.out.println(i + "   " +list_Teacher.get(i).getName());
         }
     }
