@@ -547,7 +547,7 @@ public class Application {
                                 int idRemove = input.nextInt();
                                 PNV_Teacher.getList_Teacher().remove(idRemove);
                                 System.out.println("List of teacher after update");
-                                PNV_Student.showStudentList();
+                                PNV_Teacher.showTeacherList();
                                 break;
                             case 3:
                                 PNV_Teacher.showTeacherList();
@@ -610,5 +610,6 @@ public class Application {
         StudyPerform stpm10 = new StudyPerform(st4, sb4, 8);
         StudyPerform stpm11 = new StudyPerform(st5, sb4, 8);
         StudyPerform stpm12 = new StudyPerform(st6, sb4, 8);
+        StudyPerform stpm13 = new StudyPerform(st6, sb6, 8);
     }
 }
